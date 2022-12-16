@@ -11,5 +11,5 @@ class Solution:
 
 
 s1 = Solution()
-nums = [1, 2, 3, 1]
+nums = [1, 2, 3, 4]
 print(s1.containsDuplicate(nums))
