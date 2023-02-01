@@ -9,10 +9,9 @@ class Solution(object):
             if nums[i] == 0:
                 zero.append(i)
         for j in range(len(zero)):
-            nums.append(nums.pop(zero[j]-j))
+            nums.append(nums.pop(zero[j] - j))
+
 
 s1 = Solution()
-nums = [0,1,0,3,12]
-s1.moveZeroes(nums)
-
-
+nums = [0, 1, 0, 3, 12]
+print(s1.moveZeroes(nums))
