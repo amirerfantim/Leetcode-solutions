@@ -1,4 +1,4 @@
-class Solution4 {
+class Solution80 {
     public static int removeDuplicates(int[] nums) {
         int unique_index = 2;
 

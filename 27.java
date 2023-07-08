@@ -1,5 +1,5 @@
 
-class Solution1 {
+class Solution27 {
     public static int removeElement(int[] nums, int val) {
         int k = 0;
 
