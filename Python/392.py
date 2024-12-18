@@ -1,18 +1,19 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        cur_index = -1
-        for char_s in s:
-            if char_s in t[cur_index + 1:]:
-                new_index = t[cur_index+1:].index(char_s)
-                cur_index = cur_index + new_index + 1
-                # new = t[:cur_index] + t[cur_index+1:]
-                # t = new
-            else:
-                return False
-        return True
+        s_index = 0
+        t_index = 0
+        while s_index < len(s) and t_index < len(t):
+            if s[s_index] == t[t_index]:
+                s_index += 1
+                t_index += 1
+            elif s[s_index] != t[t_index]:
+                t_index += 1
+        if s_index == len(s):
+            return True
+        return False
 
 
 s1 = Solution()
-s = "aaa"
-t = "bbaaaa"
+s = "acb"
+t = "ahbgdc"
 print(s1.isSubsequence(s, t))
