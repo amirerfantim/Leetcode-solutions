@@ -1,23 +1,21 @@
+from logging import currentframe
+
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        cur_sub = []
-        max_len = 0
-        cur_len = 0
-        for i in range(len(s)):
+        left = max_length = 0
+        char_set = set()
 
-            if s[i] not in cur_sub:
-                cur_len += 1
-                cur_sub.append(s[i])
-            else:
-                index = cur_sub.index(s[i])
-                cur_sub = cur_sub[index + 1:]
-                cur_sub.append(s[i])
-                cur_len = len(cur_sub)
-            if cur_len > max_len:
-                max_len = cur_len
-        return max_len
-
+        for right in range(len(s)):
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+            current_length = right - left + 1
+            if current_length > max_length:
+                max_length = current_length
+            char_set.add(s[right])
+        return max_length
 
 s1 = Solution()
-s = " "
+s = "bbbbb"
 print(s1.lengthOfLongestSubstring(s))
