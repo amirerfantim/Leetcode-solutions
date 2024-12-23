@@ -1,20 +1,21 @@
-class Solution(object):
-    def maxArea(self, height):
-        maximum_area = 0
-        left_pointer = 0
-        right_pointer = len(height) - 1
+from typing import List
 
-        while left_pointer < right_pointer:
-            if height[left_pointer] < height[right_pointer]:
-                maximum_area = max((right_pointer - left_pointer) * (height[left_pointer]), maximum_area)
-                left_pointer += 1
-            else:
-                maximum_area = max((right_pointer - left_pointer) * (height[right_pointer]), maximum_area)
-                right_pointer -= 1
-        return maximum_area
 
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        max_area = 0
+        while left < right:
+            current_area = min(height[left], height[right]) * (right - left)
+            if current_area > max_area:
+                max_area = current_area
+            if height[left] <= height[right]:
+                left += 1
+            elif height[left] > height[right]:
+                right -= 1
+        return max_area
 
 
 s1 = Solution()
-h = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+h = [1, 1]
 print(s1.maxArea(h))
