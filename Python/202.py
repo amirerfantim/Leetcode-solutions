@@ -1,18 +1,22 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        nums = []
-        while True:
-            nums.append(n)
-            if n == 1:
-                return True
-            temp = 0
-            while n > 0:
-                temp += pow(n % 10, 2)
-                n = n // 10
-            n = temp
+        nums = set()
+
+        def get_next_num(num):
+            next_num = 0
+            while num:
+                digit = num % 10
+                num = num // 10
+                next_num += digit * digit
+            return next_num
+
+        while n != 1:
             if n in nums:
                 return False
+            nums.add(n)
+            n = get_next_num(n)
+        return n == 1
 
 
 s1 = Solution()
-print(s1.isHappy(19))
+print(s1.isHappy(4))
