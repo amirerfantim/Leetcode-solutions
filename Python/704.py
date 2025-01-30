@@ -3,21 +3,21 @@ from typing import List
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        def binary_search(l, r, arr, number):
-            if l > r:
-                return -1
-            med = (r + l) // 2
-            if number > arr[med]:
-                return binary_search(med + 1, r, arr, number)
-            elif number == arr[med]:
-                return med
-            else:
-                return binary_search(l, med - 1, arr, number)
+        def search(nums, left, right, target):
+            if left <= right:
+                mid = (right + left) // 2
+                if nums[mid] == target:
+                    return mid
+                elif nums[mid] < target:
+                    return search(nums, mid + 1, right, target)
+                else:
+                    return search(nums, left, mid - 1, target)
+            return -1
 
-        return binary_search(0, len(nums) - 1, nums, target)
+        return search(nums, 0, len(nums) - 1, target)
 
 
 s1 = Solution()
-nums = [5]
-target = 5
+nums = [-1, 0, 3, 5, 9, 12]
+target = 0
 print(s1.search(nums, target))
